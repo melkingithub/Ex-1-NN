@@ -1,4 +1,4 @@
-<H3>ENTER YOUR NAME</H3>
+![image](https://github.com/user-attachments/assets/d708fc55-d5b8-4406-be06-ae7f8357bfe3)<H3>ENTER YOUR NAME</H3>
 <H3>ENTER YOUR REGISTER NO.</H3>
 <H3>EX. NO.1</H3>
 <H3>DATE</H3>
@@ -37,11 +37,44 @@ STEP 5:Normalizing the data<BR>
 STEP 6:Splitting the data into test and train<BR>
 
 ##  PROGRAM:
-TYPE YOUR CODE HERE
+```
+import pandas as pd                                                 # Importing Libraries
+import io
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
+df=pd.read_csv("Churn_Modelling.csv",index_col="RowNumber")         # Read the dataset from drive
+df.head()
+```
+```
+df.isnull().sum()                                                   # Finding Missing Values
+```
+```
+df.duplicated().sum()                                               # Check For Duplicates
+```
+```
+df=df.drop(['Surname', 'Geography','Gender'], axis=1)               # Remove Unnecessary Columns
+scaler=StandardScaler()                                             # Normalize the dataset
+df=pd.DataFrame(scaler.fit_transform(df))
+df.head()
+```
+```
+X,Y=df.iloc[:,:-1].values ,df.iloc[:,-1].values                     # Split the dataset into input and output
+print('Input:\n',X,'\nOutput:\n',Y) 
+Xtrain,Xtest,Ytrain,Ytest = train_test_split(X, Y, test_size=0.2)   # Splitting the data for training & Testing
+print("Xtrain:\n" ,Xtrain, "\nXtest:\n", Xtest)                     # X Train and Test
+print("\nYtrain:\n" ,Ytrain, "\nYtest:\n", Ytest)                   # Y Train and Test
+```
 
 
 ## OUTPUT:
-SHOW YOUR OUTPUT HERE
+![image](https://github.com/user-attachments/assets/240459c3-a0a1-4038-a02c-86be9c379d8c)
+![image](https://github.com/user-attachments/assets/8af8858c-ad47-4a14-8156-19cd73cb675c)
+![image](https://github.com/user-attachments/assets/89fc7171-b4f5-42c9-b14c-b47a538a245d)
+![image](https://github.com/user-attachments/assets/2cb822ef-2797-4388-a4a1-4f5cbd774352)
+![image](https://github.com/user-attachments/assets/a6d31c24-d2e7-4f0b-b3ef-2dbf265477a2)
+
+
 
 
 ## RESULT:
